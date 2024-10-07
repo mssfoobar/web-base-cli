@@ -2,7 +2,6 @@ import { exit } from 'process';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { text, group, isCancel } from '@clack/prompts';
-
 const execProm = promisify(exec);
 
 export async function getGitRepoRoot(): Promise<string> {
@@ -20,7 +19,8 @@ export async function getGitRepoRoot(): Promise<string> {
 }
 
 export async function getWorkingDirectory(): Promise<string> {
-	const command: string = `pwd`;
+	let os = process.platform;
+	const command: string = (os === 'darwin' || os === 'linux') ? `pwd` : `cd`;
 	let path;
 	try {
 		const { stdout, stderr } = await execProm(command);
