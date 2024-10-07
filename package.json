@@ -1,13 +1,21 @@
 {
-  "name": "cli",
+  "name": "@mssfoobar/cli",
   "version": "1.0.0",
   "main": "index.js",
   "bin": {
     "cli": "./bin/index.js"
   },
+  "private": "false",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
+  },
+  "publishConfig": {
+    "@mssfoobar:registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mssfoobar/module-cli.git"
   },
   "keywords": [],
   "author": "",
