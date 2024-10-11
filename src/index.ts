@@ -129,8 +129,6 @@ program
       initialValue: `${root}`,
     });
 
-    let project: string = map.get(module).project;
-
     let s = spinner();
     s.start("installing module...");
     setTimeout(() => {}, 5000);
@@ -138,7 +136,7 @@ program
 
     s = spinner();
     s.start("installing dependencies...");
-    let process = await exec(`npm install ${map.get(module).url}`, (exec) => {
+    let process = await exec(`npm install module`, (exec) => {
       if (exec) console.log(exec);
       cp(
         `${root}/node_modules/@mssfoobar/${module}/src`,
