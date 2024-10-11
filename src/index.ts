@@ -111,18 +111,11 @@ program
     });
   });
 
-
-
 //This is for installing a module
 program
   .command("install")
   .argument("<module>")
   .action(async (module: string) => {
-    if (!map.has(module)) {
-      console.error(`Error: ${module} not found in the list of modules`);
-      exit(0);
-    }
-
     let root: string = await getWorkingDirectory();
     await text({
       message: "Please enter the path to your root folder",
@@ -136,7 +129,7 @@ program
 
     s = spinner();
     s.start("installing dependencies...");
-    let process = await exec(`npm install module`, (exec) => {
+    let process = await exec(`npm install ${module}`, (exec) => {
       if (exec) console.log(exec);
       cp(
         `${root}/node_modules/@mssfoobar/${module}/src`,
