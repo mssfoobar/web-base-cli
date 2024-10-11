@@ -115,7 +115,8 @@ program
 program
   .command("install")
   .argument("<module>")
-  .action(async (module: string) => {
+  .option("-t <tag>", "tag", "latest")
+  .action(async (module: string, options) => {
     let root: string = await getWorkingDirectory();
     await text({
       message: "Please enter the path to your root folder",
@@ -123,16 +124,16 @@ program
     });
 
     let s = spinner();
-    s.start("installing module...");
+    s.start(`installing ${module}@${options.t}...`);
     setTimeout(() => {}, 5000);
     s.stop();
 
     s = spinner();
     s.start("installing dependencies...");
-    let process = await exec(`npm install ${module}`, (exec) => {
+    let process = await exec(`npm install ${module}@${options.t}`, (exec) => {
       if (exec) console.log(exec);
       cp(
-        `${root}/node_modules/@mssfoobar/${module}/src`,
+        `${root}/node_modules/${module}/src`,
         `${root}/src`,
         { recursive: true },
         (err) => {

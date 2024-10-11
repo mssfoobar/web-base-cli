@@ -1,6 +1,6 @@
 {
   "name": "@mssfoobar/cli",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "bin": {
     "cli": "./bin/index.js"
@@ -23,6 +23,7 @@
   "dependencies": {
     "@clack/core": "^0.3.4",
     "@clack/prompts": "^0.7.0",
+    "@mssfoobar/dash": "^0.0.1",
     "commander": "^12.1.0"
   },
   "devDependencies": {
