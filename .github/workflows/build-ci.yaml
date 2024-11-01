@@ -1,9 +1,6 @@
 name: build and publish workflow
 
 on:
-    push:
-        branches:
-            - "main"
     workflow_dispatch:
     release:
         types: [published]
@@ -20,6 +17,6 @@ jobs:
                   registry-url: https://npm.pkg.github.com/
             - run: npm ci
             - run: npm run build
-            - run: changeset publish
+            - run: npx changeset publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
